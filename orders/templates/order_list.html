@@ -1,0 +1,55 @@
+{% extends "shop/base.html" %}
+{% load staticfiles %}
+{% block title %}
+	Order History 
+{% endblock %}
+{% block content %}
+<div class="col-md-12">
+	{% if messages %}
+		{% for msg in messages %}       
+			<div class="alert alert-success">
+				{{msg.message}}
+			</div>
+		{% endfor %}
+	{% endif %}
+	<!-- Start of For loop - For each p in products add a row -->
+	{% for order in order_details %}
+		<p>Order Number: {{order.id}}</p>
+		<p>Order Date: {{order.created}}</p>
+		<table class="table table-bordered table-hover table-condensed">					
+			<thead>
+			<!-- The header row-->
+				<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Quantity</th>
+				<th>Price</th>
+				<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for order_item in order.get_items %}
+				<tr>
+					<td>{{order_item.id}}</td>
+					<td>{{order_item.product}}</td>
+					<td>{{order_item.quantity}}</td>
+					<td>&euro; {{order_item.price}}</td>
+					<td>&euro; {{order_item.get_cost}}</td>				
+				</tr>
+				{% endfor %}
+				<!-- End of For loop -->			
+			</tbody>
+		</table>
+		<div class="row">
+			<div class="col-md-12">
+				<p class="text-right"><strong>Order Total: &euro; 
+                                {{order.get_total_cost}}</strong></p>
+			</div>  
+        </div>
+        <p>
+            <a href=""><button class="btn btn-primary">Cancel Order</button></a>
+        </p>
+	{% endfor %}
+</div>
+{% endblock content %}
+

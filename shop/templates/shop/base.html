@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}My shop{% endblock %}</title>
+  <link href="{% static 'css/base.css' %}" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+</head>
+<body>
+  <div id="header">
+    <a href="/" class="logo">MAHN</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'shop:product_list' %}">MAHN</a>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li>
+                  <a class='nav-link' href="{% url 'shop:product_list' %}">Products</a>
+               </li>
+                {% if request.user.is_authenticated %}
+                <li>
+                    <a class='nav-link' href="{% url 'cart:cart_detail' %}">your cart</a>
+                 </li>
+                <li>
+                    <a class='nav-link' href="{% url 'signout' %}"> Sign Out <i class="fas fa-sign-out-alt"></i></a>
+                </li>
+                {% else %}
+                <li>
+                    <a class='nav-link' href="{% url 'signup' %}"> Sign Up <i class="fas fa-user-plus"></i></a>
+                </li>
+                <li>
+                    <a class='nav-link' href="{% url 'signin' %}"> Sign In <i class="fas fa-sign-in-alt"></i></a>
+                </li>
+                {% endif %}
+              {% if item_count > 0 %}
+            <li class="nav-item">
+              <a class="nav-link" href="">
+            <span class="glypicon glypicon-shopping-cart"></span>({{item_count}})</a>
+            </li>
+              {% endif %}
+      </ul>
+      </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+  </div>
+  <div id="subheader">
+    <div class="cart">
+      {% with total_items=cart|length %}
+        {% if cart|length > 0 %}
+          Your cart:
+        <a href="{% url 'cart:cart_detail' %}">
+          {{ total_items }} item{{ total_items|pluralize }},
+          €{{ cart.get_total_price }}
+        </a>
+        {% else %}
+          Your cart is empty
+        {% endif %}
+      {% endwith %}
+    </div>
+  </div>
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>
