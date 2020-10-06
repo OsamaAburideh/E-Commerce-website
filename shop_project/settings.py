@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'crispy_forms',
     'vouchers.apps.VouchersConfig',
+    'search_app.apps.SearchAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -62,6 +63,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR,'shop','templates/'),
                 os.path.join(BASE_DIR,'orders','templates/'),
+                os.path.join(BASE_DIR,'search_app','templates/'),
                 os.path.join(BASE_DIR,'cart','templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -78,6 +80,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'shop_project.wsgi.application'
 
+
+# email backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'Dumb9474@gmail.com' 
+EMAIL_HOST_PASSWORD = 'Dummy9474'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -138,7 +148,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
-STRIPE_PUBLISHABLE_KEY = 'pk_test_TduYtFosrebKpndZcLwgg3x600Upd464FB'
 STRIPE_SECRET_KEY = 'sk_test_CCYwUmfZrTmNdcjxcQOraTMD0030xDRfEb'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_TduYtFosrebKpndZcLwgg3x600Upd464FB'
 
-
+LOGIN_URL = '/account/login/'
+TIME_ZONE = 'Europe/London'

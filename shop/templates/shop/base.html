@@ -6,6 +6,8 @@
   <title>{% block title %}My shop{% endblock %}</title>
   <link href="{% static 'css/base.css' %}" rel="stylesheet">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -16,29 +18,39 @@
 <body>
   <div id="header">
     <a href="/" class="logo">MAHN</a>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-          <a class="navbar-brand" href="{% url 'shop:product_list' %}">MAHN</a>
+          <a class="navbar-brand" href="{% url 'shop:home' %}">MAHN</a>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li>
-                  <a class='nav-link' href="{% url 'shop:product_list' %}">Products</a>
+                  <a class='nav-link' href="{% url 'shop:product_list' %}">Products <i class="fa fa-th"></i></a>
                </li>
+               <li>
+                 <a class='nav-link' href="{% url 'contact' %}">Contact <i class="fa fa-envelope"></i></a>
+              </li>
                 {% if request.user.is_authenticated %}
+
                 <li>
-                    <a class='nav-link' href="{% url 'cart:cart_detail' %}">your cart</a>
-                 </li>
-                <li>
-                    <a class='nav-link' href="{% url 'signout' %}"> Sign Out <i class="fas fa-sign-out-alt"></i></a>
+                    <a class='nav-link' href="{% url 'signout' %}"> Sign Out <i class="fa fa-sign-out"></i></a>
                 </li>
+                <li>
+                  <a class='nav-link' href="{% url 'view_profile' %}"> Profile <i class="fa fa-user-circle"></i></a>
+                </li>
+                <li>
+                  <a class='nav-link' href="{% url 'orders:order_history' %}"> View Orders <i class="fa fa-truck"></i></a>
+              </li>
+              <li>
+                <a class='nav-link' href="{% url 'cart:cart_detail' %}"><i > Shopping Cart <i class=" fa fa-shopping-cart"></i></a>
+             </li>
                 {% else %}
                 <li>
-                    <a class='nav-link' href="{% url 'signup' %}"> Sign Up <i class="fas fa-user-plus"></i></a>
+                    <a class='nav-link' href="{% url 'signup' %}"> Sign Up <i class="fa fa-user-plus"></i></a>
                 </li>
                 <li>
-                    <a class='nav-link' href="{% url 'signin' %}"> Sign In <i class="fas fa-sign-in-alt"></i></a>
+                    <a class='nav-link' href="{% url 'signin' %}"> Sign In <i class="fa fa-sign-in"></i></a>
                 </li>
-                {% endif %}
+              {% endif %}
               {% if item_count > 0 %}
             <li class="nav-item">
               <a class="nav-link" href="">

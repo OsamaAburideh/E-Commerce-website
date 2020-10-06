@@ -14,7 +14,6 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
     paid = models.BooleanField(default=False)
-
     voucher = models.ForeignKey(Voucher,
                                 related_name='orders',
                                 null=True,
@@ -34,7 +33,7 @@ class Order(models.Model):
         return total_cost - total_cost * (self.discount / Decimal('100'))
         
     def get_items(self):
-        return OrderItem.objects
+        return OrderItem.objects.filter(order=self)
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items',
@@ -50,3 +49,8 @@ class OrderItem(models.Model):
     def get_cost(self):
         return self.price * self.quantity
     
+    def get_total_cost(self):
+        return sum(item.get_cost() for item in self.items.all())
+        
+    def get_items(self):
+        return OrderItem.objects.filter(order=self)

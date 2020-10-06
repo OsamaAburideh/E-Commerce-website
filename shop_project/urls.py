@@ -17,15 +17,25 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from shop import views
+import orders.views
+import shop.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('cart/',include('cart.urls',namespace='cart')),
     path('orders/',include('orders.urls',namespace='orders')),
-    path('account/signup/',views.signupView, name='signup'),
-    path('account/login/',views.signinView, name='signin'),
-    path('account/logout/',views.signoutView, name='signout'),
+    path('orderhistory/',orders.views.order_history, name='order_history'),
+    path('cancel/<int:order_id>',orders.views.cancel_order, name='cancel_order'),
+    path('search/', include('search_app.urls')),
+    path('product/',shop.views.product_list, name='product_list'),
+    path('account/signup/',shop.views.signupView, name='signup'),
+    path('account/login/',shop.views.signinView, name='signin'),
+    path('account/logout/',shop.views.signoutView, name='signout'),
+    path('profile/', shop.views.view_profile, name='view_profile'),
+    path('profile/edit', shop.views.edit_profile, name='edit_profile'),
+    path('change_password', shop.views.change_password, name='change_password'),
+    path('contact',shop.views.contact, name='contact'),
+    path('success',shop.views.success, name='success'),
     path('', include('shop.urls', namespace='shop')),
     path('vouchers/', include('vouchers.urls', namespace='vouchers')),
 ]

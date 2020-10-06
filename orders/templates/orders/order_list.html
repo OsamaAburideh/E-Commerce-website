@@ -1,9 +1,10 @@
 {% extends "shop/base.html" %}
-{% load staticfiles %}
+{% load static %}
 {% block title %}
 	Order History 
 {% endblock %}
 {% block content %}
+<h1>Order History</h1>
 <div class="col-md-12">
 	{% if messages %}
 		{% for msg in messages %}       
@@ -14,10 +15,10 @@
 	{% endif %}
 	<!-- Start of For loop - For each p in products add a row -->
 	{% for order in order_details %}
-		<p>Order Number: {{order.id}}</p>
-		<p>Order Date: {{order.created}}</p>
+		<p>Order Number: {{ order.id }}</p>
+		<p>Order Date: {{ order.created }}</p>
 		<table class="table table-bordered table-hover table-condensed">					
-			<thead>
+			<thead class="thead-dark">
 			<!-- The header row-->
 				<tr>
 				<th>Id</th>
@@ -30,11 +31,11 @@
 			<tbody>
 				{% for order_item in order.get_items %}
 				<tr>
-					<td>{{order_item.id}}</td>
-					<td>{{order_item.product}}</td>
-					<td>{{order_item.quantity}}</td>
-					<td>&euro; {{order_item.price}}</td>
-					<td>&euro; {{order_item.get_cost}}</td>				
+					<td>{{ order_item.id }}</td>
+					<td>{{ order_item.product }}</td>
+					<td>{{ order_item.quantity }}</td>
+					<td>&euro; {{ order_item.price }}</td>
+					<td>&euro; {{ order_item.get_cost }}</td>				
 				</tr>
 				{% endfor %}
 				<!-- End of For loop -->			
@@ -43,13 +44,26 @@
 		<div class="row">
 			<div class="col-md-12">
 				<p class="text-right"><strong>Order Total: &euro; 
-                                {{order.get_total_cost}}</strong></p>
+                                {{ order.get_total_cost }}</strong></p>
 			</div>  
         </div>
         <p>
-            <a href=""><button class="btn btn-primary">Cancel Order</button></a>
+            <a href="{% url 'cancel_order' order.id %}"><button class="btn btn-dark">Cancel Order</button></a>
         </p>
 	{% endfor %}
+	<div class="mx-auto">
+			{% if orders.paginator.num_pages > 1 %}
+				<hr>
+				<div class="text-center">
+					{% for pg in orders.paginator.page_range %}
+						<a href="?page={{pg}}" class="btn btn-light btn-sm 
+								{% if orders.number == pg %} 
+									active 
+								{% endif %}">{{pg}}</a>
+					{% endfor %}
+			</div>
+		{% endif %}
+	</div>
 </div>
 {% endblock content %}
 

@@ -1,0 +1,146 @@
+{% extends "shop/base.html" %}
+
+
+{% block content %}
+<title>MAHN HomePage</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script>
+  var images = document.getElementsByTagName("img");
+  for(var i = 0; i < images.length; i++) {
+      var image = images[i];
+      image.onclick = function(event) {
+           window.location.href = this.id + '.html';
+      };
+  }
+</script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("media/images/mac.jpg");
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+</style>
+<body>
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+  </div>
+<!-- Header with full-height image -->
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-left w3-text-white" style="padding:48px">
+    <span class="w3-jumbo w3-hide-small">MAHN Your Online Electronics Store</span><br>
+    <span class="w3-xxlarge w3-hide-large w3-hide-medium">Start something that matters</span><br>
+    <span class="w3-large">Signup now and start shopping.</span>
+    <p><a href="account/signup/" class="w3-button w3-black"><i class="fa fa-user-plus"> </i> Signup Now!! </a></p>
+    <span class="w3-large">Already a member? Sign In.</span>
+    <p><a href="account/login/" class="w3-button w3-black"><i class="fa fa-sign-in"> </i> Sign in </a></p>
+  
+</header>
+
+
+<!-- Promo Section - "View Products" -->
+<div class="w3-container w3-light-grey" style="padding:128px 16px">
+  <div class="w3-row-padding">
+    <div class="w3-col m6">
+      <h3>Our Products.</h3>
+      <p>Check out the MAHN smooth product pages, below. Not only can you see what the website looks like, but hovering over the below you can see what our Recommended Products</p>
+      <p><a href="product/" class="w3-button w3-black"><i class="fa fa-th"> </i> View Our Products</a></p>
+    </div>
+    <div class="w3-col m6">
+      <img class="w3-image w3-round-large" src="media/images/viewprod.jpg" alt="view" width="700" height="394">
+    </div>
+  </div>
+</div>
+
+
+<!-- Promo Section "Statistics" -->
+<div class="w3-container w3-row w3-center w3-dark-grey w3-padding-64">
+ <div class="w3-quarter">
+    <span class="w3-xxlarge">10+</span>
+    <br>Partners
+  </div>
+  <div class="w3-quarter">
+    <span class="w3-xxlarge">14+</span>
+    <br>Products
+  </div>
+  <div class="w3-quarter">
+    <span class="w3-xxlarge">3-6</span>
+    <br>Shipping business days
+  </div>
+  <div class="w3-quarter">
+    <span class="w3-xxlarge">1000+</span>
+    <br>Happy Users
+  </div>
+ 
+</div>
+
+<!-- Work Section -->
+<div class="w3-container" style="padding:128px 16px" id="work">
+  <h3 class="w3-center">OUR RECOMMENDATIONS</h3>
+  <p class="w3-center w3-large">FOR YOU</p>
+
+  <div class="w3-row-padding" style="margin-top:64px">
+    <div class="w3-col l3 m6">
+      <a href="http://127.0.0.1:8000/9/macbook-pro/" id="bottle" ><img src="media/images/mac.jpg"  style="width:100%" alt="Mac"  class="w3-hover-opacity" /></a>
+    </div>
+    <div class="w3-col l3 m6">
+      <a href="http://127.0.0.1:8000/4/xbox-one/" id="bottle" ><img src="media/images/xbox.jpg"  style="width:100%" alt="xbox"  class="w3-hover-opacity" /></a>
+    </div>
+    <div class="w3-col l3 m6">
+      <a href="http://127.0.0.1:8000/10/hp-pavillion/" id="bottle" ><img src="media/images/hp-pavillion.jpg"  style="width:100%" alt="hp-pavillion"  class="w3-hover-opacity" /></a>
+    </div>
+    <div class="w3-col l3 m6">
+      <a href="http://127.0.0.1:8000/8/iphone-11/" id="bottle" ><img src="media/images/iphone_11.jpg"  style="width:100%" alt="iphone_11"  class="w3-hover-opacity" /></a>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for full size images on click-->
+<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+  <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
+  <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+    <img id="img01" class="w3-image">
+    <p id="caption" class="w3-opacity w3-large"></p>
+  </div>
+</div>
+
+
+
+
+ <!-- Image of location/map -->
+    <img src="media/images/elect.jpg" class="w3-image w3-greyscale" style="width:100%;margin-top:48px">
+  </div>
+</div>
+   
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+ 
+  <p>By MAHN <h7>Thank you.</h7></p>
+</footer>
+ 
+
+</body>
+</html>
+
+
+{% endblock %}

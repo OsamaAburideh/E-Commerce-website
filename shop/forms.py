@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 
 class SignUpForm(UserCreationForm):
@@ -11,4 +11,17 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('username','first_name','last_name','email','password1','password2')
 
-        
+class EditProfileForm(UserChangeForm):
+    class Meta:
+        model = User
+        fields = (
+            'email',
+            'first_name',
+            'last_name'
+        )
+
+# contact form
+class ContactForm(forms.Form):
+    contact_name = forms.CharField(required=True)
+    contact_email = forms.EmailField(required=True)
+    content = forms.CharField(required=True)

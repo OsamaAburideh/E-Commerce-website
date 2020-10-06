@@ -6,7 +6,6 @@
 
 {% block content %}
     <h1>Checkout</h1>
-
     <div class="order-info">
         <h3>Your order</h3>
         <ul>
@@ -31,8 +30,8 @@
         <form action="" method="POST">
             {% csrf_token %}
             <script
-                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                data-key="{{data_key}}"
+                value="Place order" src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="{{'pk_test_TduYtFosrebKpndZcLwgg3x600Upd464FB'}}"
                 data-name="Online Store"
                 data-description="{{description}}"
                 data-amount="{{stripe_total}}"
